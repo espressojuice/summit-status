@@ -1,0 +1,42 @@
+# Personal / Summit Data status page.
+#
+# Runs on GitHub Actions, so it keeps reporting when the thing it is watching is
+# down. Sibling of the GOAC page (espressojuice/goac-status); the two are
+# separate repos on purpose so a personal outage never appears on the company
+# page and vice versa.
+owner: espressojuice
+repo: summit-status
+
+sites:
+  - name: Summit Data
+    url: https://summitdata.us
+    # Vercel answers the root with a redirect; that is the healthy response, so
+    # it has to be accepted or the site reads as permanently down.
+    expectedStatusCodes: [200, 301, 302, 307, 308]
+  - name: SmartPull
+    url: https://smartpull.io
+    expectedStatusCodes: [200, 301, 302, 307, 308]
+  - name: FlipHive
+    url: https://fliphive.ai
+    expectedStatusCodes: [200, 301, 302, 307, 308]
+  - name: StorageHub
+    url: https://storagehub.ai
+    expectedStatusCodes: [200, 301, 302, 307, 308]
+  - name: YouTube Transcribe
+    url: https://youtube-transcribe.com
+    expectedStatusCodes: [200, 301, 302, 307, 308]
+  - name: LotGuard
+    url: https://lotguard-web.vercel.app
+    expectedStatusCodes: [200, 301, 302, 307, 308]
+  - name: StorageHub (staging)
+    url: https://storage-staging-sepia.vercel.app
+    expectedStatusCodes: [200, 301, 302, 307, 308]
+
+status-website:
+  cname: status.summitdata.us
+  name: Summit Data Status
+  introTitle: "Is it working right now?"
+  introMessage: "Green means the site is answering normally. Red means it isn't. Each one is tested every five minutes from outside its own hosting, so this page stays up even when a site doesn't."
+  navbar:
+    - title: Status
+      href: /
